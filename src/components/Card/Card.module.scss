@@ -1,0 +1,56 @@
+.card {
+	border: 1px solid #f3f3f3;
+	padding: 20px;
+	margin-bottom: 25px;
+	width: 210px;
+	border-radius: 40px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	position: relative;
+	transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
+
+	&:hover {
+		box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.06);
+		transform: translateY(-5px);
+	}
+
+	.favorite {
+		position: absolute;
+		left: 20px;
+		cursor: pointer;
+	}
+
+	.title {
+		font-weight: 600;
+		font-size: 14px;
+		margin: 15px 0;
+	}
+
+	.salary {
+		width: 100%;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin: 5px 0;
+	}
+
+	.price {
+		p {
+			opacity: 0.7;
+			font-size: 14px;
+		}
+	}
+
+	.btn {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background-color: #fff;
+		border: 1px solid #f2f2f2;
+		border-radius: 8px;
+		width: 32px;
+		height: 32px;
+		cursor: pointer;
+	}
+}
