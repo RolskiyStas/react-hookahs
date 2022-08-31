@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/react-hookahs/static/css/main.94b1d987.css",
+    "main.js": "/react-hookahs/static/js/main.b877bac8.js",
+    "index.html": "/react-hookahs/index.html",
+    "main.94b1d987.css.map": "/react-hookahs/static/css/main.94b1d987.css.map",
+    "main.b877bac8.js.map": "/react-hookahs/static/js/main.b877bac8.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.94b1d987.css",
+    "static/js/main.b877bac8.js"
+  ]
+}
