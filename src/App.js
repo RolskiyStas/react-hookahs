@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Routes, Route } from "react-router-dom";
 import axios from "axios";
 
@@ -10,6 +10,25 @@ import Orders from "pages/Orders";
 
 import AppContext from "context";
 
+async function fetchData() {
+  try {
+    const [cartResponse, favoritesResponse, itemsResponse] = await Promise.all([
+      axios.get("https://63089e9746372013f5821856.mockapi.io/cart"),
+      axios.get("https://63089e9746372013f5821856.mockapi.io/favorites"),
+      axios.get("https://63089e9746372013f5821856.mockapi.io/items"),
+    ]);
+
+    return {
+      cartData: cartResponse.data,
+      favoritesData: favoritesResponse.data,
+      itemsData: itemsResponse.data,
+    };
+  } catch (error) {
+    alert("Error while requesting data");
+    console.error(error);
+  }
+}
+
 function App() {
   const [items, setItems] = useState([]);
   const [cartItems, setCartItems] = useState([]);
@@ -19,28 +38,18 @@ function App() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    async function fetchData() {
-      try {
-        const [cartResponse, favoritesResponse, itemsResponse] =
-          await Promise.all([
-            axios.get("https://63089e9746372013f5821856.mockapi.io/cart"),
-            axios.get("https://63089e9746372013f5821856.mockapi.io/favorites"),
-            axios.get("https://63089e9746372013f5821856.mockapi.io/items"),
-          ]);
-
-        setIsLoading(false);
-
-        setCartItems(cartResponse.data);
-        setFavorites(favoritesResponse.data);
-        setItems(itemsResponse.data);
-      } catch (error) {
-        alert("Error while requesting data");
-        console.error(error);
-      }
-    }
-
-    fetchData();
+    fetchResources();
   }, []);
+
+  const fetchResources = useCallback(async () => {
+    const { cartData, favoritesData, itemsData } = await fetchData();
+
+    setIsLoading(false);
+
+    setCartItems(cartData);
+    setFavorites(favoritesData);
+    setItems(itemsData);
+  }, [setIsLoading, setCartItems, setFavorites, setItems]);
 
   const onAddToCart = async (obj) => {
     try {

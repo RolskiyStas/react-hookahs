@@ -23,7 +23,6 @@ function Orders() {
 
     fetchData();
   }, []);
-
   return (
     <div className="content">
       <div className="content__header">
